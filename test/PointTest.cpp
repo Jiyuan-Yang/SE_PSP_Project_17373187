@@ -9,7 +9,7 @@ namespace test {
 	TEST_CLASS(test) {
 public:
 
-	TEST_METHOD(ConstructorTest) {
+	TEST_METHOD(PointConstructorTest) {
 		Point *a = new Point(1.1, 2.2);
 		Assert::AreEqual(a->getX(), 1.1);
 		Assert::AreEqual(a->getY(), 2.2);
@@ -19,7 +19,7 @@ public:
 		Assert::AreEqual(b.getY(), 3.4);
 	}
 
-	TEST_METHOD(OperatorTest) {
+	TEST_METHOD(PointOperatorTest) {
 		std::set<Point> pointSet;
 		pointSet.insert(Point(1.0, 2.0));
 		pointSet.insert(Point(1.1, 2.0));

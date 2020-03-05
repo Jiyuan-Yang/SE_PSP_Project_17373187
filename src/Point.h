@@ -1,4 +1,7 @@
 #pragma once
+#ifndef POINT_H
+#define POINT_H
+
 class Point {
 private:
 	double x;
@@ -9,3 +12,5 @@ public:
 	double getY();
 	bool operator < (const Point& p) const;
 };
+
+#endif
