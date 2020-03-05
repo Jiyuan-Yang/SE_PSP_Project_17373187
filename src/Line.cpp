@@ -4,7 +4,7 @@ Line::Line(int x0, int y0, int x1, int y1) {
 	// ax+by+c=0
 	a = (double)y1 - y0;
 	b = (double)x0 - x1;
-	c = (double)x1 * y0 - x0 * y1;
+	c = (double)x1 * y0 - (double)x0 * y1;
 }
 
 double Line::getA() {

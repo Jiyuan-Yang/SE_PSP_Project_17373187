@@ -14,6 +14,11 @@ public:
 		Point *ab = Line::getIntersectPoint(a, b);
 		Assert::AreEqual(ab->getX(), 1.0);
 		Assert::AreEqual(ab->getY(), 1.0);
+		a = Line(0, 0, 1, 1);
+		b = Line(0, 1, 1, 0);
+		ab = Line::getIntersectPoint(a, b);
+		Assert::AreEqual(ab->getX(), 0.5);
+		Assert::AreEqual(ab->getY(), 0.5);
 	}
 	};
 }
