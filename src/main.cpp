@@ -41,6 +41,7 @@ int main(int argc, char *argv[]) {
 
 	in.close();
 	out.close();
+	
 	return 0;
 }
 
@@ -48,6 +49,7 @@ void getIntersectNum(ifstream& in, ofstream& out) {
 	int lineNum;
 	in >> lineNum;
 	vector<Line> allLines;
+	vector<Circle> allCircles;
 	set<Point> allPoints;
 	for (int i = 0; i < lineNum; ++i) {
 		char mark;
@@ -55,18 +57,31 @@ void getIntersectNum(ifstream& in, ofstream& out) {
 		if (mark == 'L') {
 			Line* newLine = parseLine(in);
 			for (int j = 0; j < allLines.size(); ++j) {
-				allPoints.insert(*Line::getIntersectPoint(*newLine, allLines[j]));
+				Line::getLineIntersectPoint(allPoints, *newLine, allLines[j]);
+			}
+			for (int j = 0; j < allCircles.size(); ++j) {
+				Circle::getLineCircleIntersect(allPoints, *newLine, allCircles[j]);
 			}
 			allLines.push_back(*newLine);
 		}
-		else if (mark == 'C') {
-			parseCircle(in);
+		else if (mark == 'C') { 
+			Circle* newCircle = parseCircle(in);
+			for (int j = 0; j < allLines.size(); ++j) {
+				Circle::getLineCircleIntersect(allPoints, allLines[j], *newCircle);
+			}
+			for (int j = 0; j < allCircles.size(); ++j) {
+				Circle::getCircleIntersect(allPoints, *newCircle, allCircles[j]);
+			}
+			allCircles.push_back(*newCircle);
 		}
 		else {
 			cout << "ERROR: invalid mark character " << mark << "." << endl;
 		}
 	}
 	out << allPoints.size() << endl;
+	for (Point p : allPoints) {
+		cout << p.getX() << ' ' << p.getY() << endl;
+	}
 }
 
 Line* parseLine(ifstream& in) {
@@ -76,5 +91,7 @@ Line* parseLine(ifstream& in) {
 }
 
 Circle* parseCircle(ifstream& in) {
-	return nullptr;
+	int x, y, r;
+	in >> x >> y >> r;
+	return new Circle(x, y, r);
 }

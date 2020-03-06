@@ -1,4 +1,6 @@
 #include "Point.h"
+#include <cmath>
+#define EPSILON 0.000001 
 
 Point::Point(double x, double y) :x(x), y(y) {}
 
@@ -11,10 +13,10 @@ double Point::getY() {
 }
 
 bool Point::operator < (const Point& p) const {
-	if (x == p.x) {
-		return y < p.y;
+	if (fabs(x - p.x) <= EPSILON) {
+		return y < p.y && fabs(y - p.y) > EPSILON;
 	}
 	else {
-		return x < p.x;
+		return x < p.x && fabs(x - p.x) > EPSILON;
 	}
 }
