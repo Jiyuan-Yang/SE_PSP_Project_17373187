@@ -79,9 +79,9 @@ void getIntersectNum(ifstream& in, ofstream& out) {
 		}
 	}
 	out << allPoints.size() << endl;
-	for (Point p : allPoints) {
-		cout << p.getX() << ' ' << p.getY() << endl;
-	}
+	// for (Point p : allPoints) {
+	// 	cout << p.getX() << ' ' << p.getY() << endl;
+	// }
 }
 
 Line* parseLine(ifstream& in) {

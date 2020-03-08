@@ -11,6 +11,7 @@ Line::Line(int x0, int y0, int x1, int y1) {
 	a = (double)y1 - y0;
 	b = (double)x0 - x1;
 	c = (double)x1 * y0 - (double)x0 * y1;
+	// here a, b, c may be not the most simple one
 }
 
 double Line::getA() {

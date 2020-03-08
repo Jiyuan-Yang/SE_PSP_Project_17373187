@@ -5,28 +5,40 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace test {
-	TEST_CLASS(test) {
-public:
-
-	TEST_METHOD(PointConstructorTest) {
-		Point *a = new Point(1.1, 2.2);
-		Assert::AreEqual(a->getX(), 1.1);
-		Assert::AreEqual(a->getY(), 2.2);
-
-		Point b = Point(1.2, 3.4);
-		Assert::AreEqual(b.getX(), 1.2);
-		Assert::AreEqual(b.getY(), 3.4);
-	}
-
-	TEST_METHOD(PointOperatorTest) {
-		std::set<Point> pointSet;
-		pointSet.insert(Point(1.0, 2.0));
-		pointSet.insert(Point(1.1, 2.0));
-		pointSet.insert(Point(1.0, 2.1));
-		pointSet.insert(Point(1.0, 2.0));
-		int size = pointSet.size();
-		Assert::AreEqual(size, 3);
-	}
+namespace test
+{
+	TEST_CLASS(test)
+	{
+	public:
+		TEST_METHOD(PointOperatorTestBasic)
+		{
+			Point p0 = Point(1.0, 2.0);
+			Point p1 = Point(1.1, 1.9);
+			Point p2 = Point(0.9, 2.1);
+			Point p3 = Point(1.1, 1.9);
+			std::set<Point> pointSet;
+			pointSet.insert(p0);
+			pointSet.insert(p1);
+			pointSet.insert(p2);
+			pointSet.insert(p3);
+			Assert::AreEqual((int)pointSet.size(), 3);
+		}
+		TEST_METHOD(PointOperatorTestMoreDigits)
+		{
+			// basic case
+			Point p0 = Point(1.000000001, 2.0);
+			Point p1 = Point(1.000000002, 2.0);
+			std::set<Point> pointSet;
+			pointSet.insert(p0);
+			pointSet.insert(p1);
+			Assert::AreEqual((int)pointSet.size(), 1);
+		}
+		TEST_METHOD(PointGetTest)
+		{
+			// basic case
+			Point p0 = Point(1.000000001, 2.0);
+			Assert::AreEqual(p0.getX(), 1.000000001);
+			Assert::AreEqual(p0.getY(), 2.0);
+		}
 	};
 }

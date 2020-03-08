@@ -1,6 +1,6 @@
 #include "Point.h"
 #include <cmath>
-#define EPSILON 0.000001 
+#define EPSILON 0.00000001 
 
 Point::Point(double x, double y) :x(x), y(y) {}
 
