@@ -75,7 +75,7 @@ void getIntersectNum(ifstream& in, ofstream& out) {
 			allCircles.push_back(*newCircle);
 		}
 		else {
-			cout << "ERROR: invalid mark character " << mark << "." << endl;
+			cout << "ERROR: invalid mark character." << mark << "." << endl;
 		}
 	}
 	out << allPoints.size() << endl;
